@@ -1,7 +1,7 @@
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using IWebHostEnvironment = Microsoft.AspNetCore.Hosting.IWebHostEnvironment;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace BtcTransmuter
@@ -9,7 +9,7 @@ namespace BtcTransmuter
     public class BtcTransmuterOptions : IBtcTransmuterOptions
     {
         public const string configPrefix = "TRANSMUTER_";
-        public BtcTransmuterOptions(IConfiguration configuration, IHostingEnvironment hostingEnvironment, ILogger logger)
+        public BtcTransmuterOptions(IConfiguration configuration, IWebHostEnvironment hostingEnvironment, ILogger logger)
         {
             
             DatabaseConnectionString = configuration.GetValue<string>("Database");

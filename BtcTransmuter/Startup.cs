@@ -15,6 +15,7 @@ using BtcTransmuter.Services;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
@@ -22,10 +23,10 @@ namespace BtcTransmuter
 {
     public class Startup
     {
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly Microsoft.Extensions.Logging.ILogger _logger;
 
-        public Startup(IHostingEnvironment hostingEnvironment, IConfiguration configuration,  ILoggerFactory logFactory)
+        public Startup(IWebHostEnvironment hostingEnvironment, IConfiguration configuration,  ILoggerFactory logFactory)
         {
             _hostingEnvironment = hostingEnvironment;
             _logger = logFactory.CreateLogger(nameof(Startup));
@@ -86,7 +87,7 @@ namespace BtcTransmuter
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, BtcTransmuterOptions options,
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BtcTransmuterOptions options,
             IServiceScopeFactory serviceScopeFactory)
         {
             DependencyHelper.ServiceScopeFactory = serviceScopeFactory;

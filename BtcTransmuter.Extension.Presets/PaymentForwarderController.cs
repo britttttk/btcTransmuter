@@ -159,7 +159,7 @@ namespace BtcTransmuter.Extension.Presets
                 if (service == null)
                 {
                     viewModel.AddModelError(
-                        model => model.SelectedSourceWalletExternalServiceId,
+                        nameof(viewModel.SelectedSourceWalletExternalServiceId),
                         "Wallet chosen is wrong... ヽ༼ ಠ益ಠ ༽ﾉ ", ModelState);
                 }
                 else
@@ -170,13 +170,14 @@ namespace BtcTransmuter.Extension.Presets
                     if (data.CryptoCode != viewModel.CryptoCode)
                     {
                         viewModel.AddModelError(
-                            model => model.SelectedSourceWalletExternalServiceId,
+                            nameof(viewModel.SelectedSourceWalletExternalServiceId),
                             "Wallet chosen not the same crypto", ModelState);
                     }
                     else if (!data.PrivateKeys.Any())
                     {
+                        
                         viewModel.AddModelError(
-                            model => model.SelectedSourceWalletExternalServiceId,
+                            nameof(viewModel.SelectedSourceWalletExternalServiceId),
                             "Wallet chosen has so signing keys which would make forwarding txs impossible", ModelState);
                     }
                 }
@@ -200,7 +201,7 @@ namespace BtcTransmuter.Extension.Presets
                     foreach (var subtractFeesOutput in subtractFeesOutputs)
                     {
                         viewModel.AddModelError(
-                            model => model.PaymentDestinations[subtractFeesOutput.Item2].SubtractFeesFromOutput,
+                            nameof(CreatePaymentForwarderViewModel.PaymentDestination.SubtractFeesFromOutput),
                             "You can only subtract fees from one destination", ModelState);
                     }
                 }
@@ -210,7 +211,7 @@ namespace BtcTransmuter.Extension.Presets
                     if (totalSumIssue)
                     {
                         viewModel.AddModelError(
-                            model => model.PaymentDestinations[index].AmountPercentage,
+                            nameof(CreatePaymentForwarderViewModel.PaymentDestination.AmountPercentage),
                             "Your total amounts across all outputs exceeds 100% We're not a central bank and can't print more money than you own, sorry.",
                             ModelState);
                     }
@@ -226,15 +227,15 @@ namespace BtcTransmuter.Extension.Presets
                     if (check != 1)
                     {
                         viewModel.AddModelError(
-                            model => model.PaymentDestinations[index].DestinationAddress,
+                            nameof(CreatePaymentForwarderViewModel.PaymentDestination.DestinationAddress),
                             "Please choose to track either an address OR a derivation scheme OR an existing NBXplorer Wallet External Service",
                             ModelState);
                         viewModel.AddModelError(
-                            model => model.PaymentDestinations[index].DerivationStrategy,
+                            nameof(CreatePaymentForwarderViewModel.PaymentDestination.DerivationStrategy),
                             "Please choose to track either an address OR a derivation scheme OR an existing NBXplorer Wallet External Service",
                             ModelState);
                         viewModel.AddModelError(
-                            model => model.PaymentDestinations[index].SelectedDestinationWalletExternalServiceId,
+                            nameof(CreatePaymentForwarderViewModel.PaymentDestination.SelectedDestinationWalletExternalServiceId),
                             "Please choose to track either an address OR a derivation scheme OR an existing NBXplorer Wallet External Service",
                             ModelState);
                     }
@@ -247,7 +248,7 @@ namespace BtcTransmuter.Extension.Presets
                         if (service == null)
                         {
                             viewModel.AddModelError(
-                                model => model.PaymentDestinations[index].SelectedDestinationWalletExternalServiceId,
+                                nameof(CreatePaymentForwarderViewModel.PaymentDestination.SelectedDestinationWalletExternalServiceId),
                                 "Wallet chosen is wrong... ヽ༼ ಠ益ಠ ༽ﾉ ", ModelState);
                         }
                         else if (
@@ -256,7 +257,7 @@ namespace BtcTransmuter.Extension.Presets
                             viewModel.CryptoCode)
                         {
                             viewModel.AddModelError(
-                                model => model.PaymentDestinations[index].SelectedDestinationWalletExternalServiceId,
+                                nameof(CreatePaymentForwarderViewModel.PaymentDestination.SelectedDestinationWalletExternalServiceId),
                                 "Wallet chosen not the same crypto", ModelState);
                         }
                     }
@@ -276,7 +277,7 @@ namespace BtcTransmuter.Extension.Presets
                         catch (Exception)
                         {
                             viewModel.AddModelError(
-                                model => model.PaymentDestinations[index].DestinationAddress,
+                                nameof(CreatePaymentForwarderViewModel.PaymentDestination.DestinationAddress),
                                 "Invalid Address", ModelState);
                         }
                     }
@@ -295,7 +296,7 @@ namespace BtcTransmuter.Extension.Presets
                         catch
                         {
                             viewModel.AddModelError(
-                                model => model.PaymentDestinations[index].DerivationStrategy,
+                                nameof(CreatePaymentForwarderViewModel.PaymentDestination.DerivationStrategy),
                                 "Invalid Derivation Scheme", ModelState);
                         }
                     }
