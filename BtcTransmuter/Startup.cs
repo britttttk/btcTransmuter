@@ -17,7 +17,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using ILogger = Microsoft.VisualStudio.Web.CodeGeneration.ILogger;
 
 namespace BtcTransmuter
 {
@@ -68,9 +67,6 @@ namespace BtcTransmuter
                     case DatabaseType.Postgres:
                         builder.UseNpgsql(options.DatabaseConnectionString);
                         break;
-                    case DatabaseType.SqlServer:
-                        builder.UseSqlServer(options.DatabaseConnectionString);
-                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -85,7 +81,7 @@ namespace BtcTransmuter
                 .AddDefaultTokenProviders();
 
 
-            var mvcBuilder = services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            var mvcBuilder = services.AddMvc(mvcOptions => mvcOptions.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddExtensions(options.ExtensionsDir, mvcBuilder);
         }
 

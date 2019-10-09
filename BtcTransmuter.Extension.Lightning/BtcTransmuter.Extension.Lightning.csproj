@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFramework>netstandard2.1</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="BTCPayServer.Lightning.All" Version="1.1.0.19" />
+        <PackageReference Include="BTCPayServer.Lightning.All" Version="1.1.1" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
         <EmbeddedResource Include="Styles\**;Views\**;Scripts\**" />
-        <PackageReference Include="NBitcoin" Version="4.2.14" />
+        <PackageReference Include="NBitcoin" Version="4.2.15" />
         <ProjectReference Include="..\BtcTransmuter.Abstractions\BtcTransmuter.Abstractions.csproj" />
         <ProjectReference Include="..\BtcTransmuter.Extension.DynamicServices\BtcTransmuter.Extension.DynamicServices.csproj" />
         <ProjectReference Include="..\BtcTransmuter.Extension.NBXplorer\BtcTransmuter.Extension.NBXplorer.csproj" />
